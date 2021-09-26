@@ -1,0 +1,48 @@
+git is a version control system and its a software.It is installed locally.
+github is place where code is hosted and its a service.
+-------------------------------------------------------------------------
+COMMANDS:
+touch index.html
+(to create a file with name and extension accordingly)
+
+git config --global user.name 'TayyabAslam123'
+git config --global user.email 'tayyabaslam771@gmailcom'
+(add your username and email)
+
+git add index.html
+(add specific file in staging)
+
+git rm --cached index.html
+(remove specific file from staging)
+
+git add . 
+(add every file)
+
+git add *.html
+(add specific extension)
+
+ git rm --cached *.txt
+(remove specific extension from staging)
+
+git commit
+VIM EDITOR(press i , esc , :wq)
+
+git commit -m "intial commit"
+(commit with message to skip vim editor)
+
+git branch staging
+(make new branch)
+
+git checkout staging
+(shift to a branch)
+
+git merge staging
+(merge a branch to your current branch)
+
+git remote add origin https://github.com/username/reponame
+(add repo origin)
+
+$ git push -u origin main
+(push code base to repo)
+
+

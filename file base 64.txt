@@ -1,0 +1,58 @@
+##SUBMISSION ON ASSIGNMENT BY STUDENTS
+public function submission(Request $request){
+//Setting the relevent title , class_id, assignment_d 
+$title=$request->title;
+$class_id=$request->class_id;
+$assignment_id=$request->assignment_id;
+//End
+
+// \Log::info(print_r($request->all(),true));
+// return response(['title'=>'Unable to add assignment','content'=>$e->getMessage()],500);
+
+####CHECK'S THAT ITS A FILE OR TEXT
+###FOR_TEXT
+  if($request->my_text!=Null){
+
+        $content=$request->my_text; 
+        $submission_type='text_entry';    
+    }
+   
+    ###FOR_FILE
+    else if($request->my_file!=Null){
+    $submission_type='file_uploads'; 
+    //File submission
+    $file_name = $request->my_file->getClientOriginalName();
+    $type='file';
+    $permission='public';
+    $description='assignment description';
+    //setting path i.e (/classid_class/assignmentid_assignment)
+    $path='/'.library_name_generator($class_id, "class")."/".library_name_generator($assignment_id, "assignment"); 
+    $binary = file_get_contents($request->my_file->getRealPath());//->store('disk');
+    $base64_binary = base64_encode($binary);
+    try{
+         $file = $this->api_controller->addLibrary($file_name,$description,$base64_binary,$path,$permission,$type);
+         //FILE_ID 
+         $content=$file->data->id; 
+       }
+
+  catch(\Exception $e){
+
+    return response(['title'=>'Unable to add assignment','content'=>$e->getMessage()],500);
+  }
+  
+  }
+
+## SUBMITING ALL DATA
+try{
+  
+   (new ApiController)->submitAssignment($title,$content,$assignment_id,$class_id,$submission_type);
+   return response(['title'=>'Successful','content'=>'Assignement Submitted Successfully']);
+
+}catch(\Exception $e)
+{
+
+  return response(['title'=>'Unable to add assignment','content'=>$e->getMessage()],500);
+}
+
+}
+##END

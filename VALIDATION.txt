@@ -1,0 +1,17 @@
+ php artisan make:request ValidateProfile
+
+>>make a validater for a controller
+
+use App\Http\Requests\ValidateProfile;
+>>use on top
+
+ public function rules()
+    {
+        return [
+            'address'=>'required',
+            'ph'=>'required',
+            'cover_image'=>'required|image|size:2M'
+        ];
+    }
+
+>>>define rules

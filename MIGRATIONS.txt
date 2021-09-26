@@ -1,0 +1,22 @@
+php artisan make:migrations --create="posts"
+
+
+php artisan make:migrations  add_image_to_posts --table="posts"
+
+$ php artisan make:migration category_product_table --create=category_product
+Created Migration: 2021_03_22_222309_category_product_table
+
+
+
+//del last
+php artisan migrate :rollback 
+
+//del all
+php artisan migrate:reset
+
+
+//start from scratch
+php artisan migrate:refresh
+
+//roll back last migration and add steps respectively
+php artisan migrate:rollback --step=1

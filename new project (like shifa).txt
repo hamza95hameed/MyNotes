@@ -1,0 +1,7 @@
+composer create-project --prefer-dist laravel/laravel projectname
+
+_____________________________________________________________________________________________________
+SELECTIVE VERSION
+
+composer create-project --prefer-dist laravel/laravel="6.18.*" sahara-exchange
+______________________________________________________________________________________________________

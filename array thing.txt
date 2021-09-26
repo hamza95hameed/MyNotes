@@ -1,0 +1,21 @@
+ public function getReports(Request $request){
+      $reports=$this->api_controller->getAllReport($request->all());
+
+      // $my_data =  trim($reports->data->details_s3_link);
+      // $report_data = json_decode($my_data);
+
+
+      $data= [];
+      foreach($reports->data as $var){
+
+        $temp[]=['name'=>$var->title,"data"=>$var->created_at];
+      
+        
+       // $data = array_merge($data, $temp);
+
+      }
+
+      dd($temp);
+     return view('business_personal.report',compact('reports'));
+ 
+     } 

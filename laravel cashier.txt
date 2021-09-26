@@ -1,0 +1,5 @@
+install laravel cashier
+make account in  stripe
+paste keys in .env file
+add products
+send request to stripe

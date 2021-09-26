@@ -1,0 +1,18 @@
+LARAVEL API COURSE THINGS
+_____________________________________________________________________________________________________
+Implicit model binding:
+add model in your in function , so you should not add where shit every time
+
+function sample (Model $entry){
+}
+
+
+GLOBAL SCOPES:
+global scopes can be added in 
+app/scopes
+and then we can add a boot method in our model to every time we get a instance it will purify the instance.
+
+Soft Delete:
+add soft del like a time stamp in migration
+run the migration 
+use softdelete defination in model and add protected dates in model.

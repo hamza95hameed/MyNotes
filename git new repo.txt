@@ -1,0 +1,60 @@
+Cd into your directory that have your code
+Initiate it as a Git repository by running these commands
+git init
+git add --all
+git commit -m "Initial Commit"
+Copy the URL for you empty repository in Bitbucket
+Set the remote URL for your repository and push your initial commit
+git remote add origin <the URL for your Bitbucket repository> 
+git push -u origin master
+
+git push --force origin master
+
+_______________________
+
+
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript
+$ git init
+Initialized empty Git repository in A:/xampp/htdocs/javascript/.git/
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript (master)
+$ git add --all
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript (master)
+$ git commit -m "whole samples"
+[master (root-commit) 60afb57] whole samples
+ 16 files changed, 1864 insertions(+)
+ create mode 100644 DOM & CALCULATOR.html
+ create mode 100644 DOM FINAL.html
+ create mode 100644 DOM JS.html
+ create mode 100644 Fetch api.html
+ create mode 100644 GAME(SPEED TYPE).html
+ create mode 100644 JS ADVANCE TOPICS.html
+ create mode 100644 LEARNING JS.html
+ create mode 100644 MOST CRUCIAL.txt
+ create mode 100644 PRACTICE JS.html
+ create mode 100644 VANILA JS END.html
+ create mode 100644 js & json.html
+ create mode 100644 js 2 learn.html
+ create mode 100644 js 3 learning.html
+ create mode 100644 response.json
+ create mode 100644 sample.txt
+ create mode 100644 textdata.txt
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript (master)
+$ git remote add origin https://github.com/TayyabAslam123/Vanila_js_samples.git
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript (master)
+$ git push origin master
+Enumerating objects: 18, done.
+Counting objects: 100% (18/18), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (18/18), 14.55 KiB | 1.82 MiB/s, done.
+Total 18 (delta 0), reused 0 (delta 0)
+To https://github.com/TayyabAslam123/Vanila_js_samples.git
+ * [new branch]      master -> master
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/javascript (master)
+$

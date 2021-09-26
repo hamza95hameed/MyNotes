@@ -1,0 +1,31 @@
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/SPRINTECH-CYLINDERS/cylinder_sprintech (master)
+$ php artisan config:cache
+Configuration cache cleared!
+Configuration cached successfully!
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/SPRINTECH-CYLINDERS/cylinder_sprintech (master)
+$ cp .env.example .env
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/SPRINTECH-CYLINDERS/cylinder_sprintech (master)
+$ php artisan key:generate
+Application key set successfully.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/SPRINTECH-CYLINDERS/cylinder_sprintech (master)
+$ php artisan config:cache
+Configuration cache cleared!
+Configuration cached successfully!
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/SPRINTECH-CYLINDERS/cylinder_sprintech (master)
+$ php artisan cache:clear
+Application cache cleared!
+
+
+
+___________________________________________________
+REASON 
+.env
+api key
+cache clear
+cache config
+
