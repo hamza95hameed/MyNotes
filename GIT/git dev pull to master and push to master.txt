@@ -1,0 +1,330 @@
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (dev)
+$ git pull origin dev
+Logon failed, use ctrl+c to cancel basic credential prompt.
+Username for 'https://github.com': TayyabAslam123
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 4), reused 6 (delta 4), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+From https://github.com/TayyabAslam123/RealEstateWebsite
+ * branch            dev        -> FETCH_HEAD
+   6b3eeef..585da98  dev        -> origin/dev
+Updating 6b3eeef..585da98
+Fast-forward
+ resources/views/admin-end/dashboard.blade.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (dev)
+$ git checkout master
+Checking out files: 100% (105/105), done.
+Switched to branch 'master'
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git pull origin dev
+From https://github.com/TayyabAslam123/RealEstateWebsite
+ * branch            dev        -> FETCH_HEAD
+Checking out files: 100% (105/105), done.
+Updating 7fe0cd2..585da98
+Fast-forward
+ .htaccess                                          |    4 +
+ Aliya-homes.zip                                    |  Bin 0 -> 56709777 bytes
+ app/Contact.php                                    |   10 +
+ app/Http/Controllers/ContactController.php         |   63 +
+ app/Http/Controllers/NewsController.php            |  192 +
+ app/Newsfeed.php                                   |   10 +
+ app/Providers/AppServiceProvider.php               |    4 +-
+ .../2021_08_05_190429_create_news_table.php        |   34 +
+ .../2021_08_05_221620_create_contacts_table.php    |   34 +
+ public/admin-end/assets/css/bootstrap.css          | 6757 ++++++++++++++
+ public/admin-end/assets/css/bootstrap.min.css      |    6 +
+ public/admin-end/assets/css/demo.css               |   18 +
+ public/admin-end/assets/css/demo.css.map           |   10 +
+ public/admin-end/assets/css/main.css               | 1765 ++++
+ public/admin-end/assets/css/main.css.map           |   27 +
+ public/admin-end/assets/img/apple-icon.png         |  Bin 0 -> 2873 bytes
+ public/admin-end/assets/img/favicon.png            |  Bin 0 -> 3658 bytes
+ public/admin-end/assets/img/login-bg.jpg           |  Bin 0 -> 145254 bytes
+ public/admin-end/assets/img/logo-dark.png          |  Bin 0 -> 3221 bytes
+ public/admin-end/assets/img/profile-bg.png         |  Bin 0 -> 442803 bytes
+ public/admin-end/assets/img/user-medium.png        |  Bin 0 -> 17502 bytes
+ public/admin-end/assets/img/user.png               |  Bin 0 -> 2129 bytes
+ public/admin-end/assets/img/user1.png              |  Bin 0 -> 9108 bytes
+ public/admin-end/assets/img/user2.png              |  Bin 0 -> 11313 bytes
+ public/admin-end/assets/img/user3.png              |  Bin 0 -> 12210 bytes
+ public/admin-end/assets/img/user4.png              |  Bin 0 -> 12017 bytes
+ public/admin-end/assets/img/user5.png              |  Bin 0 -> 11337 bytes
+ public/admin-end/assets/scripts/klorofil-common.js |  225 +
+ .../vendor/bootstrap/css/bootstrap-theme.css       |  587 ++
+ .../vendor/bootstrap/css/bootstrap-theme.min.css   |    6 +
+ .../assets/vendor/bootstrap/css/bootstrap.css      | 6757 ++++++++++++++
+ .../assets/vendor/bootstrap/css/bootstrap.min.css  |    6 +
+ .../fonts/glyphicons-halflings-regular.eot         |  Bin 0 -> 20127 bytes
+ .../fonts/glyphicons-halflings-regular.svg         |  288 +
+ .../fonts/glyphicons-halflings-regular.ttf         |  Bin 0 -> 45404 bytes
+ .../fonts/glyphicons-halflings-regular.woff        |  Bin 0 -> 23424 bytes
+ .../fonts/glyphicons-halflings-regular.woff2       |  Bin 0 -> 18028 bytes
+ .../assets/vendor/bootstrap/js/bootstrap.js        | 2377 +++++
+ .../assets/vendor/bootstrap/js/bootstrap.min.js    |    7 +
+ public/admin-end/assets/vendor/bootstrap/js/npm.js |   13 +
+ .../assets/vendor/chartist/css/chartist-custom.css |  615 ++
+ .../vendor/chartist/css/chartist-custom.css.map    |   11 +
+ .../assets/vendor/chartist/css/chartist.css        |  615 ++
+ .../assets/vendor/chartist/css/chartist.min.css    |    1 +
+ .../assets/vendor/chartist/js/chartist.js          | 4465 +++++++++
+ .../assets/vendor/chartist/js/chartist.min.js      |   10 +
+ .../assets/vendor/chartist/map/chartist.css.map    |   10 +
+ .../assets/vendor/chartist/map/chartist.min.js.map |    1 +
+ .../assets/vendor/chartist/scss/chartist.scss      |  241 +
+ .../vendor/font-awesome/css/font-awesome.css       | 2337 +++++
+ .../vendor/font-awesome/css/font-awesome.min.css   |    4 +
+ .../vendor/font-awesome/fonts/FontAwesome.otf      |  Bin 0 -> 134808 bytes
+ .../font-awesome/fonts/fontawesome-webfont.eot     |  Bin 0 -> 165742 bytes
+ .../font-awesome/fonts/fontawesome-webfont.svg     | 2671 ++++++
+ .../font-awesome/fonts/fontawesome-webfont.ttf     |  Bin 0 -> 165548 bytes
+ .../font-awesome/fonts/fontawesome-webfont.woff    |  Bin 0 -> 98024 bytes
+ .../font-awesome/fonts/fontawesome-webfont.woff2   |  Bin 0 -> 77160 bytes
+ .../vendor/jquery-slimscroll/jquery.slimscroll.js  |  464 +
+ .../jquery-slimscroll/jquery.slimscroll.min.js     |   16 +
+ .../jquery.easy-pie-chart/angular.easypiechart.js  |  397 +
+ .../angular.easypiechart.min.js                    |    9 +
+ .../vendor/jquery.easy-pie-chart/easypiechart.js   |  351 +
+ .../jquery.easy-pie-chart/easypiechart.min.js      |    9 +
+ .../jquery.easy-pie-chart/jquery.easypiechart.js   |  360 +
+ .../jquery.easypiechart.min.js                     |    9 +
+ public/admin-end/assets/vendor/jquery/jquery.js    | 9814 ++++++++++++++++++++
+ .../admin-end/assets/vendor/jquery/jquery.min.js   |    4 +
+ .../admin-end/assets/vendor/jquery/jquery.min.map  |    1 +
+ .../vendor/linearicons/fonts/Linearicons-Free.eot  |  Bin 0 -> 55820 bytes
+ .../vendor/linearicons/fonts/Linearicons-Free.svg  |  199 +
+ .../vendor/linearicons/fonts/Linearicons-Free.ttf  |  Bin 0 -> 55620 bytes
+ .../vendor/linearicons/fonts/Linearicons-Free.woff |  Bin 0 -> 55696 bytes
+ .../linearicons/fonts/Linearicons-Free.woff2       |  Bin 0 -> 21780 bytes
+ .../admin-end/assets/vendor/linearicons/style.css  |  536 ++
+ public/admin-end/assets/vendor/toastr/toastr.css   |  228 +
+ public/admin-end/assets/vendor/toastr/toastr.js    |  476 +
+ .../admin-end/assets/vendor/toastr/toastr.min.css  |    1 +
+ .../admin-end/assets/vendor/toastr/toastr.min.js   |    2 +
+ public/admin-end/charts.html                       |  280 +
+ public/admin-end/elements.html                     |  413 +
+ public/admin-end/icons.html                        |  269 +
+ public/admin-end/index.html                        |  612 ++
+ public/admin-end/notifications.html                |  179 +
+ public/admin-end/page-lockscreen.html              |   51 +
+ public/admin-end/page-login.html                   |   73 +
+ public/admin-end/page-profile.html                 |  361 +
+ public/admin-end/panels.html                       |  241 +
+ public/admin-end/tables.html                       |  393 +
+ public/admin-end/typography.html                   |  169 +
+ public/aliyahomesweb (1).zip                       |  Bin 13528641 -> 0 bytes
+ public/user/images/aliyahomesvideo.mkv             |  Bin 6907092 -> 12517090 bytes
+ public/user/js/application.js                      |  398 +
+ resources/views/admin-end/dashboard.blade.php      |   56 +
+ resources/views/admin-end/edit.blade.php           |   46 +
+ resources/views/admin-end/index.blade.php          |  196 +
+ resources/views/admin-end/master.blade.php         |  161 +
+ resources/views/admin-end/template.blade.php       |  612 ++
+ resources/views/user/contact.blade.php             |   52 +-
+ resources/views/user/events.blade.php              |  183 +
+ resources/views/user/home.blade.php                |   97 +-
+ resources/views/user/layout/master.blade.php       |    3 +-
+ resources/views/user/layout/menu.blade.php         |   17 +-
+ resources/views/user/partners.blade.php            |  183 +
+ resources/views/user/youtube.blade.php             |   42 +
+ routes/web.php                                     |   45 +-
+ 105 files changed, 48102 insertions(+), 87 deletions(-)
+ create mode 100644 .htaccess
+ create mode 100644 Aliya-homes.zip
+ create mode 100644 app/Contact.php
+ create mode 100644 app/Http/Controllers/ContactController.php
+ create mode 100644 app/Http/Controllers/NewsController.php
+ create mode 100644 app/Newsfeed.php
+ create mode 100644 database/migrations/2021_08_05_190429_create_news_table.php
+ create mode 100644 database/migrations/2021_08_05_221620_create_contacts_table.php
+ create mode 100644 public/admin-end/assets/css/bootstrap.css
+ create mode 100644 public/admin-end/assets/css/bootstrap.min.css
+ create mode 100644 public/admin-end/assets/css/demo.css
+ create mode 100644 public/admin-end/assets/css/demo.css.map
+ create mode 100644 public/admin-end/assets/css/main.css
+ create mode 100644 public/admin-end/assets/css/main.css.map
+ create mode 100644 public/admin-end/assets/img/apple-icon.png
+ create mode 100644 public/admin-end/assets/img/favicon.png
+ create mode 100644 public/admin-end/assets/img/login-bg.jpg
+ create mode 100644 public/admin-end/assets/img/logo-dark.png
+ create mode 100644 public/admin-end/assets/img/profile-bg.png
+ create mode 100644 public/admin-end/assets/img/user-medium.png
+ create mode 100644 public/admin-end/assets/img/user.png
+ create mode 100644 public/admin-end/assets/img/user1.png
+ create mode 100644 public/admin-end/assets/img/user2.png
+ create mode 100644 public/admin-end/assets/img/user3.png
+ create mode 100644 public/admin-end/assets/img/user4.png
+ create mode 100644 public/admin-end/assets/img/user5.png
+ create mode 100644 public/admin-end/assets/scripts/klorofil-common.js
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/css/bootstrap-theme.css
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/css/bootstrap-theme.min.css
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/css/bootstrap.css
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/css/bootstrap.min.css
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/js/bootstrap.js
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/js/bootstrap.min.js
+ create mode 100644 public/admin-end/assets/vendor/bootstrap/js/npm.js
+ create mode 100644 public/admin-end/assets/vendor/chartist/css/chartist-custom.css
+ create mode 100644 public/admin-end/assets/vendor/chartist/css/chartist-custom.css.map
+ create mode 100644 public/admin-end/assets/vendor/chartist/css/chartist.css
+ create mode 100644 public/admin-end/assets/vendor/chartist/css/chartist.min.css
+ create mode 100644 public/admin-end/assets/vendor/chartist/js/chartist.js
+ create mode 100644 public/admin-end/assets/vendor/chartist/js/chartist.min.js
+ create mode 100644 public/admin-end/assets/vendor/chartist/map/chartist.css.map
+ create mode 100644 public/admin-end/assets/vendor/chartist/map/chartist.min.js.map
+ create mode 100644 public/admin-end/assets/vendor/chartist/scss/chartist.scss
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/css/font-awesome.css
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/css/font-awesome.min.css
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/FontAwesome.otf
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/fontawesome-webfont.eot
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/fontawesome-webfont.svg
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/fontawesome-webfont.ttf
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/fontawesome-webfont.woff
+ create mode 100644 public/admin-end/assets/vendor/font-awesome/fonts/fontawesome-webfont.woff2
+ create mode 100644 public/admin-end/assets/vendor/jquery-slimscroll/jquery.slimscroll.js
+ create mode 100644 public/admin-end/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/angular.easypiechart.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/angular.easypiechart.min.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/easypiechart.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/easypiechart.min.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.js
+ create mode 100644 public/admin-end/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js
+ create mode 100644 public/admin-end/assets/vendor/jquery/jquery.js
+ create mode 100644 public/admin-end/assets/vendor/jquery/jquery.min.js
+ create mode 100644 public/admin-end/assets/vendor/jquery/jquery.min.map
+ create mode 100644 public/admin-end/assets/vendor/linearicons/fonts/Linearicons-Free.eot
+ create mode 100644 public/admin-end/assets/vendor/linearicons/fonts/Linearicons-Free.svg
+ create mode 100644 public/admin-end/assets/vendor/linearicons/fonts/Linearicons-Free.ttf
+ create mode 100644 public/admin-end/assets/vendor/linearicons/fonts/Linearicons-Free.woff
+ create mode 100644 public/admin-end/assets/vendor/linearicons/fonts/Linearicons-Free.woff2
+ create mode 100644 public/admin-end/assets/vendor/linearicons/style.css
+ create mode 100644 public/admin-end/assets/vendor/toastr/toastr.css
+ create mode 100644 public/admin-end/assets/vendor/toastr/toastr.js
+ create mode 100644 public/admin-end/assets/vendor/toastr/toastr.min.css
+ create mode 100644 public/admin-end/assets/vendor/toastr/toastr.min.js
+ create mode 100644 public/admin-end/charts.html
+ create mode 100644 public/admin-end/elements.html
+ create mode 100644 public/admin-end/icons.html
+ create mode 100644 public/admin-end/index.html
+ create mode 100644 public/admin-end/notifications.html
+ create mode 100644 public/admin-end/page-lockscreen.html
+ create mode 100644 public/admin-end/page-login.html
+ create mode 100644 public/admin-end/page-profile.html
+ create mode 100644 public/admin-end/panels.html
+ create mode 100644 public/admin-end/tables.html
+ create mode 100644 public/admin-end/typography.html
+ delete mode 100644 public/aliyahomesweb (1).zip
+ create mode 100644 public/user/js/application.js
+ create mode 100644 resources/views/admin-end/dashboard.blade.php
+ create mode 100644 resources/views/admin-end/edit.blade.php
+ create mode 100644 resources/views/admin-end/index.blade.php
+ create mode 100644 resources/views/admin-end/master.blade.php
+ create mode 100644 resources/views/admin-end/template.blade.php
+ create mode 100644 resources/views/user/events.blade.php
+ create mode 100644 resources/views/user/partners.blade.php
+ create mode 100644 resources/views/user/youtube.blade.php
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git add .
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git commit -m "merge with dev"
+On branch master
+nothing to commit, working tree clean
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git push origin master
+To https://github.com/TayyabAslam123/RealEstateWebsite.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/TayyabAslam123/RealEstateWebsite.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git add .
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git commit -m "merge with dev"
+On branch master
+nothing to commit, working tree clean
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git push origin master
+To https://github.com/TayyabAslam123/RealEstateWebsite.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/TayyabAslam123/RealEstateWebsite.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git pull origin dev
+From https://github.com/TayyabAslam123/RealEstateWebsite
+ * branch            dev        -> FETCH_HEAD
+Already up to date.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git push origin master
+To https://github.com/TayyabAslam123/RealEstateWebsite.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/TayyabAslam123/RealEstateWebsite.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ code .
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git pull origin master
+remote: Enumerating objects: 2, done.
+remote: Counting objects: 100% (2/2), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (2/2), done.
+From https://github.com/TayyabAslam123/RealEstateWebsite
+ * branch            master     -> FETCH_HEAD
+   7fe0cd2..75dd0ec  master     -> origin/master
+Already up to date!
+Merge made by the 'recursive' strategy.
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git add .
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git commit -m "merge with dev"
+On branch master
+nothing to commit, working tree clean
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$ git push origin master
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 265 bytes | 88.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To https://github.com/TayyabAslam123/RealEstateWebsite.git
+   75dd0ec..a76ca2c  master -> master
+
+tayyab@laptop MINGW64 /a/xampp/htdocs/Aliya-homes (master)
+$

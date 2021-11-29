@@ -1,0 +1,187 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MODEL INFO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@ a model can extend a model so that it can use its attributes like if buyer extends user , all information of user can be used
+<?php
+
+namespace App;
+use App\Scopes\BuyerScope;
+class Buyer extends User
+{
+
+}
+
+@@ You can add constants in model so some stuff can be used again and again like
+  const VERIFIED='1';
+  const UNVERIFIED='0';
+  const ADMIN_USER='true';
+  const REGULAR_USER='false'; 
+
+@@ Atttibutes we always want to show 
+ protected $fillable = [
+        'name', 
+        'email',
+        'password',
+        'verified',
+        'verification_token',
+        'admin'
+]
+
+@@attributes we want to hide
+    protected $hidden = [
+        'password', 
+        'remember_token',
+        'verification_token'
+    ];
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TRAITS
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@you can make traits in App\traits\ApiResponser.php
+
+@@Sample Trait Be Like with namespace and its functions
+@@use its name space where you want to use that trait
+
+like 
+use App\Traits\ApiResponser;
+
+class UserController extends ApiController
+{
+    use ApiResponser;
+}
+
+=====================================================
+
+<?php
+
+namespace App\Traits;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+trait ApiResponser{
+
+private function successResponse($data,$code){
+return response()->json($data,$code);
+}
+
+private function errorResponse($message,$code){
+    return response()->json(["error"=>$message,"code"=>$code],$code);
+    }
+
+protected function showAll($msg,Collection $collection,$code=200){
+
+return $this->successResponse(['message'=>$msg,'data'=>$collection],$code);
+}
+
+protected function showone($msg,Model $model,$code=200){
+    
+    return $this->successResponse(['message'=>$msg,'data'=>$model],$code);
+}
+}//
+?>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+EXCEPTION HANDLER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+APP/EXCEPTIONS/HANDLER.PHP
+
+Render method: Is excuted every time when excetion occur.
+Report methos : Is excuted to report.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SOFT DELETE
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ $table->softDeletes();//deleted at
+
+add this in migration first then go to model and do this
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes; ///
+
+
+class Product extends Model
+{
+    use SoftDeletes; ////
+    protected $dates=['deleted_at'] ;  //////////
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IMPLICIT MODEL BINDING
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In implicit model binding you dont need to find the instance using incoming variable.
+You just set that in argument of function.
+
+  public function show(User $user)
+    {
+        return response()->json(['message'=>'user data received','data'=>$user],200);
+    }
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SCOPES
+
+REF : https://itnext.io/understanding-laravel-scopes-a3d1f9030d51
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+A scope is a method in your model that makes it able to add database logic into your model.
+
+1) Global scope
+ create a scope in App/scopes 
+
+<?php
+namespace App\Scopes;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Builder;
+class SellerScope implements Scope{
+public function apply(Builder $builder,Model $model){
+
+    $builder->has('products');  
+    //$builder->where('verification_token','1122');
+    //$builder->where('admin','false');
+}
+}
+
+After creating the scope we should add it to our model. This can be done by overwriting the boot method. 
+This results in every query on this model getting WHERE has products or where verification token = 1122 as a constrain
+
+
+<?php
+
+namespace App;
+use App\Scopes\SellerScope;
+class Seller extends User
+{
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new SellerScope); //here comes where we call our scope
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product');
+    }
+}
+
+
+
+
+2) Anonymous Global Scopes
+
+We can write this type of scope directly in  model if a seprate class dor scope is not required.
+
+3) Remove scope : It is possible to remove a global scope, if you have a certain query that you want to execute without the global scope.
+
+4) Local scopes : 
+Local scopes make it able to define common sets of constraints that are easily reusable.
+It can be added directly in model and called in time of query.
+
+5) Dynamic global scope:
+Dynamic local scopes work in exactly the same way as a normal local scope. The only difference is that a dynamic local scope accepts parameters.
+
+
+
