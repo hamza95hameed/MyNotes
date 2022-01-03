@@ -1,18 +1,10 @@
-VVV .CRUCIAL STUF
 
 LARAVEL
 __________________________________________________________________
-
-
-
-
-
-INSTALLATIONSS
-On Instalation time always always run composer install or update.
+IOn Instalation time always always run composer install or update.
 Then pls add the .env file
 
-Also change server stuff from xampp>apachae and windows > system 32
-
+Also change server stuff (virtual host) from xampp>apachae and windows > system 32
 __________________________________________________________________
 
 1)composer install
