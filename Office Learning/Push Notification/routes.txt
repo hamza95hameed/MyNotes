@@ -1,0 +1,27 @@
+-------
+web.php
+-------
+Route::namespace('Fcm')->group(function () {
+Route::get('/send-notification',"FcmController@pushNotification");
+
+//testing	
+Route::get('/fcm',"FcmController@index");
+Route::get('/send-notification',"FcmController@sendNotification");
+});
+
+------
+api.php
+------
+
+
+//test
+Route::namespace('Fcm')->group(function () {
+Route::get('/send-notification',"FcmController@sendNotification");
+});
+
+
+
+--------
+firebase-messaging-sw
+-------
+place this file in public/

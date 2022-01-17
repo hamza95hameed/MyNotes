@@ -1,0 +1,10 @@
+
+TUTORIAL FOLLOWED : https://www.youtube.com/watch?v=IWwfesuNZds
+
+1) Make a new application in firebase.
+
+2) Get sdk script , server key , server id
+
+3) define routes / controller.
+
+4) In controller define token 

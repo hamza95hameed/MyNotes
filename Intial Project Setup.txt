@@ -1,18 +1,18 @@
 
 LARAVEL
 __________________________________________________________________
-IOn Instalation time always always run composer install or update.
+On Instalation time always always run composer install or update.
 Then pls add the .env file
 
 Also change server stuff (virtual host) from xampp>apachae and windows > system 32
 __________________________________________________________________
 
 1)composer install
-2)500 erro==> .env file
+2)500 error==> .env file
 3)migration
 4)seeder
 _________________________________________________
-IF CHANE IS IN .ENV FILE ...ALWAYS DO CACHE CLEAR.
+IF CHANGE IS IN .ENV FILE ...ALWAYS DO CACHE CLEAR.
 ___________________________________________
 cache clear is  v imp
 if cache file in bootstrap/cache is not there u can use another project file after cache clear of that
