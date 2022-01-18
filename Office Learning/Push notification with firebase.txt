@@ -1,6 +1,9 @@
 
 TUTORIAL FOLLOWED : https://www.youtube.com/watch?v=IWwfesuNZds
 
+BLOG : https://www.positronx.io/laravel-send-web-push-notification-using-firebase-tutorial/
+-----------------------------------------------------------------------------------------------
+
 1) Make a new application in firebase.
 
 2) Get sdk script , server key , server id
