@@ -1,0 +1,5 @@
+Route::get('/gmail',function(){
+return view('gmail-api');
+});
+
+Route::post('make-pdf', 'GmailController@makePdf')->name('makepdf');
