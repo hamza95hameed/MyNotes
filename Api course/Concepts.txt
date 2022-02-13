@@ -205,7 +205,51 @@ ORM TO FETCH DATA OF MULTIPLE MODEL:
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Eager loading
+Eager loading + function used in eloquent
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) collapse()
+
+it is used to make multicollections data into a single collaction.
+
+2) values()
+
+it is used to get only values from the array.
+
+3) pluck()
+
+The pluck helper method is used to retrieve a list of specific values from a given $array. It is most useful when used against arrays of objects, but will also work with arrays just as well.
+
+--
+e.g 
+So, If we want to define a relationship between these two entities we’ll need three database tables: books, authors and a special table called as a “pivot table” book_author. 
+The book_author table is derived from the alphabetical order of the related model names, and contains the book_id and author_id columns.
+--
+
+4) attach()
+
+attach will make a entry in pivot table 
+$book->authors()->attach($authorId);
+$book->authors()->attach($authorId, ['best_seller' => true]);
+
+5) detach()
+
+it will remove the rentry from pivot
+
+I.E
+$book->authors()->detach($authorId);
+Or you can pass multiple IDs as an array.
+$book->authors()->detach([4, 5, 8]);
+Of if you want to remove all authors from a book, use detach without passing any arguments.
+$book->authors()->detach();
+
+6) sync()
+
+$book->authors()->sync([5, 2, 10]);
+Any IDs that are not in the given array will be removed from the pivot table.
+
+7) If you do not want to detach existing IDs, you may use the syncWithoutDetaching method:
+
+$book->authors()->syncWithoutDetaching([1, 2, 3]);
 
 
