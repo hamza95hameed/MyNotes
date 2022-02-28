@@ -252,4 +252,14 @@ Any IDs that are not in the given array will be removed from the pivot table.
 
 $book->authors()->syncWithoutDetaching([1, 2, 3]);
 
+_____________________________________________________________________________________________________________________________
+Send Mail
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+When we write this command it will make a class in App/Mail
+
+php artisan make:mail UserCreated
+
+
+Then we can pass any data to view / text from build method.
+It will automatically use attribute which we had set using construct in build.
 
