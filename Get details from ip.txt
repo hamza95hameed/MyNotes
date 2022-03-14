@@ -1,0 +1,28 @@
+-----------------------
+Request:
+-----------------------
+http://ip-api.com/json/110.36.223.3
+
+or 
+
+http://ip-api.com/json/{{your-ip}}
+
+-----------------------
+Response:
+--------------------
+{
+    "status": "success",
+    "country": "Pakistan",
+    "countryCode": "PK",
+    "region": "PB",
+    "regionName": "Punjab",
+    "city": "Lahore",
+    "zip": "54000",
+    "lat": 31.5822,
+    "lon": 74.3292,
+    "timezone": "Asia/Karachi",
+    "isp": "Wateen Telecom GPON network Lahore/Islamabad",
+    "org": "Wateen Telecom Limited",
+    "as": "AS38264 National WiMAX/IMS environment",
+    "query": "110.36.223.30"
+}

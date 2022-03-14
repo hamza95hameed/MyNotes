@@ -190,5 +190,215 @@ Route::get('user/{id}/{name}', function ($id, $name) {
 })->where(['id' => '[0-9]+', 'name' => '[a-z]+'])
 
 
-**) Named routes
 
+**) Named Routes
+Named routes allow the convenient generation of URLs or redirects for specific routes.
+You may specify a name for a route by chaining the name method onto the route definition:
+
+Route::get('user/profile', function () {
+    //
+})->name('profile');
+
+
+// Generating URLs...
+$url = route('profile');
+ 
+// Generating Redirects...
+return redirect()->route('profile');
+
+
+If the named route defines parameters, you may pass the parameters as the second argument to the route function. The given parameters will automatically be inserted into the URL in their correct positions:
+
+Route::get('user/{id}/profile', function ($id) {
+    //
+})->name('profile');
+ 
+$url = route('profile', ['id' => 1]);
+
+
+**) Inspect current route
+
+public function handle($request, Closure $next)
+{
+    if ($request->route()->named('profile')) {
+        //
+    }
+ 
+    return $next($request);
+}
+
+
+**) Group URL's (namespace  &  prefix)
+
+Route::namespace('Vendor')->group(function () {
+Route::prefix('vendor')->group(function () {
+
+//Anything
+
+});
+});
+
+
+//middleware group
+
+Route::middleware(['first', 'second'])->group(function () {
+
+});
+
+
+** ) Implicit Model Binding :
+
+In this we inject the eloquent instance 
+
+public function getUser(User $user){
+
+	return $user;	
+}
+
+**) Explicit Model Binding : 
+
+In this we specify the logic in Route service provider.
+So when we hit a route we get the user instance with in.
+
+
+** )  Fall back route  : When no other route is selected
+
+
+Route::fallback(function () {
+    //
+});
+
+
+**) Get current route details
+
+$route = Route::current();
+ 
+$name = Route::currentRouteName();
+ 
+$action = Route::currentRouteAction();
+
+
+**) Method spoofing
+
+adding put , patch , delete methid in html form.
+
+    <input type="hidden" name="_method" value="PUT">
+    OR
+     @method('PUT')
+
+
+**) Rate limiting in route
+
+// 60 call per 1 min
+
+Route::middleware('auth:api', 'throttle:60,1')->group(function () {
+    Route::get('/user', function () {
+        //
+    });
+});
+
+
++++++++++++++++++++++++++++++++++++++++++++
+2) Middleware
++++++++++++++++++++++++++++++++++++++++++++
+ 
+** ) To create a new middleware, use the make:middleware Artisan command:
+
+php artisan make:middleware CheckAge
+
+If you would like to assign middleware to specific routes, you should first assign the middleware a key in your app/Http/Kernel.php 
+
+Middleware can be define in 2 ways.
+
+1) for every http request / we set it in  protected $middleware 
+
+2) for specific routes (first we define it in kernal than use it in every route file) / we set it in protected $routeMiddleware
+ 
+--
+We can set middleware to single route 
+
+Route::get('/', function () {
+    //
+})->middleware('web');
+
+--
+We can set middleware to groups
+
+Route::group(['middleware' => ['web']], function () {
+    //
+});
+
+--
+
+we can also set priority of middleware in protected $middlewarePriority
+
++++++++++++++++++++++++++++++++++++++++++++
+3) CSRF token
++++++++++++++++++++++++++++++++++++++++++++
+
+Laravel makes it easy to protect your application from cross-site request forgery (CSRF) attacks.
+Cross-site request forgeries are a type of malicious exploit whereby unauthorized commands are performed on behalf of an authenticated user.
+
+--
+X-CSRF-TOKEN :
+In addition to checking for the CSRF token as a POST parameter,
+the VerifyCsrfToken middleware will also check for the X-CSRF-TOKEN request header.
+ You could, for example, store the token in an HTML meta tag:
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
++++++++++++++++++++++++++++++++++++++++++++
+4) Controller's
++++++++++++++++++++++++++++++++++++++++++++
+
+
+## single action controller 
+
+php artisan make:controller ShowProfile --invokable
+
+## assigning middleware
+
+   public function __construct()
+    {
+        $this->middleware('auth');
+ 
+        $this->middleware('log')->only('index');
+ 
+        $this->middleware('subscribed')->except('store');
+    }
+
+## resource controller
+
+php artisan make:controller PhotoController --resource
+
+register multiple resource controller 
+
+Route::resources([
+    'photos' => 'PhotoController',
+    'posts' => 'PostController'
+]);
+
+
+## route model binding
+
+php artisan make:controller PhotoController --resource --model=Photo
+
+## partial resorce controller
+
+Route::resource('photos', 'PhotoController')->only(['index', 'show']);
+
+## api resource controller
+// exclude create , edit method which involve html templates
+Route::apiResource('photos', 'PhotoController');
+
+
+## add / except methods in 
+
+Route::resource('photos', 'PhotoController')->only([
+    'index', 'show'
+]);
+ 
+Route::resource('photos', 'PhotoController')->except([
+    'create', 'store', 'update', 'destroy'
+]);

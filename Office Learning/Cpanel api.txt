@@ -1,0 +1,9 @@
+Cpanel api to make email
+
+
+1) generate token 
+
+2) make curl request
+
+
+curl -H'Authorization: cpanel CPANEL_USERNAME:TOKEN' 'https://www.YOUR_DOMAIN.com:2083/execute/Email/add_pop?email=newuser&password=12345luggage'
