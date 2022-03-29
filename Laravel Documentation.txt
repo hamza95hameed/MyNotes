@@ -402,3 +402,267 @@ Route::resource('photos', 'PhotoController')->only([
 Route::resource('photos', 'PhotoController')->except([
     'create', 'store', 'update', 'destroy'
 ]);
+
+
+## Route caching
+
+php artisan route:cache
+
+to clear
+
+php artisan route:clear
+
++++++++++++++++++++++++++++++++++++++++++++
+5) Request
++++++++++++++++++++++++++++++++++++++++++++
+use Illuminate\Http\Request;
+
+while working with requests
+
+Some Important Request methods :
+--------
+$uri = $request->path();
+
+-----
+if ($request->is('admin/*')) {
+    //
+}
+
+-------
+// Without Query String...
+$url = $request->url();
+ ----
+// With Query String...
+$url = $request->fullUrl();
+-----
+$method = $request->method();
+---- 
+if ($request->isMethod('post')) {
+    //
+}
+
+------
+$input = $request->all();
+$name = $request->input('name');
+$name = $request->input('name', 'Sally');
+
+-----
+$input = $request->only(['username', 'password']);
+ -----
+$input = $request->only('username', 'password');
+ -----
+$input = $request->except(['credit_card']);
+ ----
+$input = $request->except('credit_card');
+---
+if ($request->has('name')) {
+    //
+}
+---
+if ($request->has(['name', 'email'])) {
+    //
+}
+----
+if ($request->filled('name')) {
+    //
+}
+---
+if ($request->missing('name')) {
+    //
+}
+
+---
+OLD INPUT
+
+<input type="text" name="username" value="{{ old('username') }}">
+
+------------
+FILE
+------------
+$file = $request->file('photo');
+-----------
+$file = $request->photo;
+-------------
+if ($request->hasFile('photo')) {
+    //
+}
+-------------
+$path = $request->photo->path();
+ ----------------
+$extension = $request->photo->extension();
+------------------
+$path = $request->photo->store('images');
+---------------- 
+$path = $request->photo->store('images', 's3');
+----------------
+If you do not want a file name to be automatically generated,
+you may use the storeAs method, which accepts the path, 
+file name, and disk name as its arguments:
+-----------------
+$path = $request->photo->storeAs('images', 'filename.jpg');
+-------------- 
+$path = $request->photo->storeAs('images', 'filename.jpg', 's3');
+
+
++++++++++++++++++++++++++++++++++++++++++++
+6) Response
++++++++++++++++++++++++++++++++++++++++++++
+
+
+** ) Return any string , array 
+
+Route::get('/', function () {
+    return 'Hello World';
+});
+
+
+Route::get('/', function () {
+    return [1, 2, 3];
+});
+
+
+**) Return with status code and header
+
+Route::get('home', function () {
+    return response('Hello World', 200)
+                  ->header('Content-Type', 'text/plain');
+});
+
+
+return response($content)
+            ->header('Content-Type', $type)
+            ->header('X-Header-One', 'Header Value')
+            ->header('X-Header-Two', 'Header Value');
+
+
+return response($content)
+            ->withHeaders([
+                'Content-Type' => $type,
+                'X-Header-One' => 'Header Value',
+                'X-Header-Two' => 'Header Value',
+            ]);
+
+--
+To resolve cors add this header
+
+
+
+
+
+**) REDIRECTIONS
+
+
+# via url
+
+Route::get('dashboard', function () {
+    return redirect('home/dashboard');
+});
+
+
+# return back with input
+
+ Route::post('user/profile', function () {
+    // Validate the request...
+ 
+    return back()->withInput();
+});
+
+
+# with named routes
+
+return redirect()->route('login');
+
+# add params 
+
+ return redirect()->route('profile', ['id' => 1]);
+
+# redirect to route outside
+ return redirect()->away('https://www.google.com');
+
+
+# flash message's
+--
+controller
+--
+return redirect('dashboard')->with('status', 'Profile updated!');
+--
+view
+--
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
+---
+Download Files
+
+
++++++++++++++++++++++++++++++++++++++++++++
+6) Views
++++++++++++++++++++++++++++++++++++++++++++
+
+##
+
+ return view('greeting', ['name' => 'James']);
+
+
+##
+
+return view('admin.profile', $data);
+
+## 
+
+sharing data with all views
+
+<?php
+ 
+namespace App\Providers;
+ 
+use Illuminate\Support\Facades\View;
+ 
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+ 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        View::share('key', 'value');
+    }
+
+
+
++++++++++++++++++++++++++++++++++++++++++++
+6) URL
++++++++++++++++++++++++++++++++++++++++++++
+
+accesing the url
+
+// Get the current URL without the query string...
+echo url()->current();
+ 
+// Get the current URL including the query string...
+echo url()->full();
+ 
+// Get the full URL for the previous request...
+echo url()->previous();
+
+
+Each of these methods may also be accessed via the URL facade:
+
+use Illuminate\Support\Facades\URL;
+ 
+echo URL::current();
