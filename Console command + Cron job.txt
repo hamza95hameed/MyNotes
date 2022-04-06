@@ -1,0 +1,288 @@
+step 1 )
+
+            Make command using
+            php artisan command:command name 
+            E.G
+            php artisan command:studentchecker 
+
+
+step 2 ) 
+
+            Go to app->console->commands
+            here set signature and description
+            */
+            protected $signature = 'make:product';
+
+                /**
+                * The console command description.
+                *
+                * @var string
+                */
+            protected $description = 'To generate sample products';
+
+step 3 )
+
+            Do all working in handle function
+
+            run command on console 
+            php artisan run:student
+
+
+####### Setting cron job with it #########
+
+Go to app/console/kernal.php
+
+Register the commands here
+
+
+KERNAL FILE
+
+-------------------------------------
+<?php
+
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\productmaker;
+
+class Kernel extends ConsoleKernel
+{
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        
+         Commands\productmaker::class,
+    ];
+
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')->hourly();
+          $schedule->command('make:product')->everyMinute();
+    }
+
+    /**
+     * Register the commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
+
+        require base_path('routes/console.php');
+    }
+}
+
+
+
+-----------------------------------
+
+SETTING UP Cron Job in Cpanel
+
+>>>>>> go to make cron job
+
+/usr/local/bin/php /home/miyantkd/invoice-software-demo.climateintl.com/artisan schedule:run >> /dev/null 2>&1
+/usr/local/bin/php /home/HOSTING-USERNAME/PROJ-NAME/artisan schedule:run >> /dev/null 2>&1
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SAMPLE COMMAND'S
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use App\Models\Invoice;
+
+
+class InvoiceStatusSchedular extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'run:invoicespaymentstatus';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'It will change the status of unpaid invoices to paid if due date is earlier than current date';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $invoices = Invoice::where('is_approved', 1)->where('status','unpaid')->get();
+        $today = date("Y-m-d");
+        $today = strtotime($today);
+
+        foreach($invoices as $invoice){
+            $due_date = $invoice->due_date;
+            $due_date = strtotime($due_date);
+            ## Check if due date is earlier than current date
+            if($due_date_time < $today_time){
+                $invoice->update(['status' => 'Paid']);
+            }
+            ##
+        }
+
+        echo "Status of invoices updated";
+           
+    }
+}
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+php artisan make:command FixParentIdInGroup
+_______________________________________________________
+
+KERNAL
+<?php
+
+namespace App\Console;
+
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+
+class Kernel extends ConsoleKernel
+{
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        //
+        Commands\FixParentIdInGroup::class
+    ];
+
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')
+        //          ->hourly();
+    }
+
+    /**
+     * Register the commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
+
+        require base_path('routes/console.php');
+    }
+}
+
+________________________________________________
+
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+
+use App\group;
+
+class FixParentIdInGroup extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'fix:parent';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $groups = group::all();
+        foreach($groups as $grp)
+        {
+            if ($grp->parent_name)
+            {
+                $my_parent = group::where('name',$grp->parent_name)->first();
+                if (!$my_parent)
+                {
+                    dd($grp->parent_name);
+                }
+                $grp->parent_id = $my_parent->id;
+                $grp->save();
+            }
+        }
+        //
+    }
+}
+___________________________________________________________________________________________________________________________________________________________________
+
+ php artisan fix:parent
+
+__________________________________________________________________________________________________________________________________________________________________
+
+  $table->bigIncrements('id');
+            $table->string('name'); // BOX POUCH WITH LOOP , ETC
+            $table->integer('parent_id')->unsigned()->nullable(); 
+            $table->string('parent_name')->nullable(); // MONO / LABEL ETC
+            $table->string('description')->nullable();// i.e TL + LD / TB + 3HP + RC
+            $table->text('json_limit')->nullable(); //limitations
