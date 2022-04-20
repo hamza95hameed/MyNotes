@@ -666,3 +666,100 @@ Each of these methods may also be accessed via the URL facade:
 use Illuminate\Support\Facades\URL;
  
 echo URL::current();
+
+-- Signed routes
+
+use Illuminate\Support\Facades\URL;
+ 
+return URL::signedRoute('unsubscribe', ['user' => 1]);
+
+
+-- If you would like to generate a temporary signed route URL that expires, you may use the temporarySignedRoute method:
+
+use Illuminate\Support\Facades\URL;
+ 
+return URL::temporarySignedRoute(
+    'unsubscribe', now()->addMinutes(30), ['user' => 1]
+);
+
+// Named routes
+
+Route::get('/post/{post}', function () {
+    //
+})->name('post.show');
+
+echo route('post.show', ['post' => 1]);
+
++++++++++++++++++++++++++++++++++++++++++++
+6) SESSION
++++++++++++++++++++++++++++++++++++++++++++
+
+In two ways to work with session
+1) global session helper Session
+2) via $request
+
+
+## REQUEST
+// get and set
+$request->session()->get('key');
+$request->session()->put('key', 'value');
+// default
+$value = $request->session()->get('key', 'default');
+// Forget a single key...
+$request->session()->forget('key');
+// Forget multiple keys...
+$request->session()->forget(['key1', 'key2']);
+// ALL
+$request->session()->flush();
+
+
+## Global session helper 
+// get and set
+$value = session('key');
+Session::get('success')
+session(['key' => 'value']);
+Session::put('key', 'value');
+//default
+$value = session('key', 'default');
+// delete
+Session::forget('yourKeyGoesHere') 
+
+## check if session exist 
+if ($request->session()->exists('users')) {
+    //
+}
+
+## check if session has values
+if ($request->session()->has('users')) {
+    //
+}
+
+
+## flash session (valid for only one request)
+$request->session()->flash('status', 'Task was successful!');
+
++++++++++++++++++++++++++++++++++++++++++++
+7) Exception handeling
++++++++++++++++++++++++++++++++++++++++++++
+
+
+
++++++++++++++++++++++++++++++++++++++++++++
+8) LOG
++++++++++++++++++++++++++++++++++++++++++++
+use Log;
+
+
+Log::emergency($message);
+Log::alert($message);
+Log::critical($message);
+Log::error($message);
+Log::warning($message);
+Log::notice($message);
+Log::info($message);
+Log::debug($message);
+
+
+logger('stripe create customer api error: '.$th->getMessage());
+
+
