@@ -3,9 +3,11 @@ https://laravelarticle.com/laravel-scheduler-on-cpanel-shared-hosting
 step 1 )
 
             Make command using
-            php artisan command:command name 
+   
+            php artisan make:command CommandName 
             E.G
-            php artisan command:studentchecker 
+            php artisan make:command ExpireSubscriptionSchedular
+
 
 
 step 2 ) 

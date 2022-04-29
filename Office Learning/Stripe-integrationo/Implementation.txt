@@ -1,0 +1,6 @@
+Route::get('/create-user', 'TestController@create');
+Route::get('/delete-user', 'TestController@delete');
+Route::get('/create-payment-method', 'TestController@createPaymentMethod');
+Route::get('/create-payment-intent', 'TestController@createPaymentintent');
+Route::get('/confirm-payment-intent', 'TestController@confirmPaymentIntent');
+Route::get('/capture-payment-intent', 'TestController@capturePaymentIntent');

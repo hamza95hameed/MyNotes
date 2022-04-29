@@ -1,0 +1,106 @@
+Make Seeder
+-------------------------------------
+php artisan make:seeder RolesSeeder
+-------------------------------------
+<?php
+use Illuminate\Database\Seeder;
+use App\Role;
+class RolesSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {   
+        Role::truncate();
+        $entries =[
+            ['name'=>'admin', 'slug'=>'admin'],
+            ['name'=>'user', 'slug'=>'user'],
+            ['name'=>'manager', 'slug'=>'manager'],
+            ['name'=>'editor', 'slug'=>'editor'],
+            ['name'=>'social-media', 'slug'=>'social-media'],
+            ['name'=>'hr', 'slug'=>'hr'],
+            ['name'=>'supplier', 'slug'=>'supplier']
+        ];
+        ## Loop through
+        foreach($entries as $entry){
+            $x = new Role();
+            $x->name = $entry['name'];
+            $x->slug = $entry['slug'];
+            $x->save();
+        }
+        ## Make log
+        logger('Role Seeder Compiled');
+    }
+}
+
+
+--------------------------------------
+Run Seeders ( collectively + single )
+--------------------------------------
+> php artisan migrate:refresh --seed
+(migration with seeder)
+
+> php artisan db:seed
+(run all seeder)
+
+> php artisan db:seed --class=UserSeeder
+(run specific seeder)
+
+> Add this line in database seeder class to run all seeders at one go
+public function run(){
+
+     $this->call(RolesSeeder::class);
+
+}
+
+-------------------------------------
+IF ERROR OCCUR:
+
+[1]  CLEAR CACHE
+(cache clear )
+(config clear)
+ 
+[2] DUMP COMPOSER
+(composer dump-autoload)
+
+-----------------------------------         
+
+
+FAKER
+
+-----------------------------------
+
+step 1 ) from database seeder call factory function placed in factory folder
+
+<?php
+use Illuminate\Database\Seeder;
+use App\Role;
+class RolesSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {   
+        Role::truncate();
+        factory(Role::class, 100)->create();
+        logger('Role Seeder Compiled');
+    }
+}
+
+
+step 2 ) add this in factory/ folders
+
+
+## ROLE
+$factory->define(Role::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+        'slug' => $faker->slug,
+    ];
+});                                                                                           

@@ -1,19 +1,28 @@
-php artisan make:migrations --create="posts"
+php artisan make:model -m
+(make model and add migration)
 
-php artisan make:migrations  add_image_to_posts --table="posts"
+php artisan make:migration add_posts --create="posts"
+php artisan make:migration category_product_table --create=category_product
+(create table)
 
-$ php artisan make:migration category_product_table --create=category_product
-Created Migration: 2021_03_22_222309_category_product_table
+php artisan make:migration  add_image_to_posts --table="posts"
+(add field in existing table)
+
+
 ----------------------------------------------------------------------------------
+// Del last
+php artisan migrate:rollback 
 
-//del last
-php artisan migrate :rollback 
-
-//del all
+// Rollback all migrations 
 php artisan migrate:reset
 
-//start from scratch
+// Start from scratch (rollback all then migrate all)
 php artisan migrate:refresh
 
-//roll back last migration and add steps respectively
+// Drop all tables then migrate
+php artisan migrate:fresh
+
+//roll back + add steps respectively
 php artisan migrate:rollback --step=1
+
+----------------------------------------------------------------------------------

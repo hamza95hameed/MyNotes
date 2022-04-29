@@ -1,0 +1,37 @@
+1) make middleware
+
+ php artisan make:middleware AgeMiddleware
+
+
+2) Define it in app/http/kernal.php
+   Can be defined globally for all request
+   Also can be defined to single route
+
+
+3)    Add this key value in routeMiddleware
+
+      'Age' => \App\Http\Middleware\AgeMiddleware::class,
+
+
+
+4) write functionality in handle function
+
+    public function handle($request, Closure $next)
+    {
+        if($request->age < 18){
+            abort(403);
+        }
+        return $next($request);
+    }
+
+
+5) assign to route
+
+Route::get('/mid-age','MidController@fun1')->middleware('Age');
+
+6) middleware on controller class
+
+public function __construct(){
+  $this->middleware('auth',['except'=>['index','show']]);
+  $this->middleware('auth');
+}

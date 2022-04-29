@@ -1,4 +1,9 @@
- php artisan make:request ValidateProfile
+#####################################################
+##  SEE OWN LEARNING REPO FOR COMPLETE DESCRIPTION ##
+#####################################################
+
+
+php artisan make:request ValidateProfile
 
 >>make a validater for a controller
 
@@ -14,4 +19,3 @@ use App\Http\Requests\ValidateProfile;
         ];
     }
 
->>>define rules

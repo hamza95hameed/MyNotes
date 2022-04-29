@@ -1,0 +1,23 @@
+1) make file in lang
+
+like
+en.json
+dk.json
+ur.json
+
+{
+    "h1" : "Hello english",
+    "p" : "How are you" 
+}
+
+2) Set lang file using
+
+App::setlocale($lang);
+
+
+3) Do this is views
+
+<div class="container">
+<h1>{{__('h1')}}</h1>
+<p>{{__('p')}}</p>
+</div> 
