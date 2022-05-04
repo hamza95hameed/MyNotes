@@ -1,0 +1,135 @@
+# custom table
+protected $table = 'my_flights';
+
+# custom P_K
+protected $primaryKey = 'flight_id';
+
+# if timestamps is not required
+public $timestamps = false;
+
+# customize name of timestamps
+const CREATED_AT = 'creation_date';
+const UPDATED_AT = 'last_update';
+
+
+# Chunking Result 
+
+Flight::chunk(200, function ($flights) {
+    foreach ($flights as $flight) {
+        //
+    }
+});
+
+# Retrive single values
+
+// Retrieve a model by its primary key...
+$flight = App\Flight::find(1);
+ 
+// Retrieve the first model matching the query constraints...
+$flight = App\Flight::where('active', 1)->first();
+ 
+// Shorthand for retrieving the first model matching the query constraints...
+$flight = App\Flight::firstWhere('active', 1);
+
+# Not found exception
+$model = App\Flight::findOrFail(1)
+
+# aggregators}
+$count = App\Flight::where('active', 1)->count();
+ 
+$max = App\Flight::where('active', 1)->max('price');
+
+
+# Create / Save a instance
+
+$flight = new Flight;
+$flight->name = $request->name;
+$flight->save();
+
+
+# Update instance
+
+
+$flight = App\Flight::find(1);
+$flight->name = 'New Flight Name';
+$flight->save();
+
+OR 
+
+( mass Update )
+
+App\Flight::where('active', 1)
+->where('destination', 'San Diego')
+->update(['delayed' => 1]);
+
+
+#  isDirty() and isClean()
+
+$user->isDirty(); // false
+$user->isClean(); // true
+
+# mass save (use guarded or fillable)
+
+protected $fillable = ['name'];
+$flight = App\Flight::create(['name' => 'Flight 10']);
+
+  /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+ protected $guarded = ['price'];
+
+
+ If you would like to make all attributes mass assignable, you may define the $guarded property as an empty array:
+
+/**
+ * The attributes that aren't mass assignable.
+ *
+ * @var array
+ */
+protected $guarded = [];
+
+## More creation method
+
+firstOrCreate/ firstOrNew
+updateOrCreate
+
+# Delete 
+$flight = App\Flight::find(1);
+$flight->delete();
+
+if pk is known
+App\Flight::destroy(1);
+ 
+del by query 
+$deletedRows = App\Flight::where('active', 0)->delete(); 
+
+
+# retrive soft deleted record
+$flights = App\Flight::onlyTrashed()
+->where('airline_id', 1)
+->get();
+
+
+************************************
+Relationships
+************************************
+1) Use to get related record using eloquent dynamic properties.
+
+[1] one to one 
+
+user -> phone
+(hasone)  (belongsto)
+---
+[2] one to hasmany
+
+post ->  comments
+(hasMany)  (belongsto)
+---
+[3] many to many
+
+products -> colors
+
+(belongstomany)   (belongstomany) 
+
