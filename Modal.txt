@@ -133,3 +133,77 @@ products -> colors
 
 (belongstomany)   (belongstomany) 
 
+
+******
+Attaching / Detaching
+******
+
+// attach
+$user = App\User::find(1); 
+$user->roles()->attach($roleId);
+
+// Detach a single role from the user...
+$user->roles()->detach($roleId);
+// Detach all roles from the user...
+$user->roles()->detach();
+
+
+*******************************************
+Eager loading
+*******************************************
+When accessing Eloquent relationships as properties, the relationship data is "lazy loaded". This means the relationship data is not actually loaded until you first access the property. However, Eloquent can "eager load" relationships at the time you query the parent model. Eager loading alleviates the N + 1 query problem. To illustrate the N + 1 query problem, consider a Book model that is related to Author:
+
+<?php
+ 
+namespace App;
+ 
+use Illuminate\Database\Eloquent\Model;
+ 
+class Book extends Model
+{
+    /**
+     * Get the author that wrote the book.
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\Author');
+    }
+}
+
+Now, let's retrieve all books and their authors:
+
+$books = App\Book::all();
+ 
+foreach ($books as $book) {
+    echo $book->author->name;
+}
+
+This loop will execute 1 query to retrieve all of the books on the table, then another query for each book to retrieve the author. So, if we have 25 books, this loop would run 26 queries: 1 for the original book, and 25 additional queries to retrieve the author of each book.
+
+Thankfully, we can use eager loading to reduce this operation to just 2 queries. When querying, you may specify which relationships should be eager loaded using the with method:
+
+$books = App\Book::with('author')->get();
+ 
+foreach ($books as $book) {
+    echo $book->author->name;
+}
+
+For this operation, only two queries will be executed:
+
+select * from books
+ 
+select * from authors where id in (1, 2, 3, 4, 5, ...)
+
+##
+Eager loading by default
+##
+
+add this in modal
+protected $with = ['author'];
+
+
+@@ Their are some built in functions for collections that we can use
+## Collection built in functions
+$data = Product::all()->makeHidden('price');
+$data = Product::all()->only([1, 2, 3]);
+return $data;
