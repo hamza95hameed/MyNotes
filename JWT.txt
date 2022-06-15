@@ -1,0 +1,64 @@
+install
+composer require tymon/jwt-auth
+
+## choose tymen/jwt after this command , It will make file in config (jwt.php)
+php artisan vendor:publish
+
+## generate secreat key
+php artisan jwt:secret
+
+## add this in USER model
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+## add these functions
+
+// Addition for JWT authentication
+public function getJWTIdentifier()
+{
+    return $this->getKey();
+}
+
+public function getJWTCustomClaims()
+{
+    return [];
+}
+
+## go to config \ auth.php
+and do this (change your driver from token jwt)
+   'api' => [
+            // 'driver' => 'token',
+            'driver' => 'jwt',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+## Copy the controller class and place it in api folder
+and add this
+use App\Http\Controllers\Api\Controller;
+
+after that make a construct in controller class that you have copied
+
+## set default driver of api for all requests in seperate class  
+It is very important as we have to set the driver to api while working with jwt
+public function __construct(){
+    auth()->setDefaultDriver('api');
+}
+
+
+## make a user with email / password
+
+## Now make a login controller and try to login  , and in return you will get a token
+save it and send it in header with every request
+In header you will send it using bearer token.
+
+
+## JWT THEORY ##
+
+## How jwt is made ##
+1) header
+2) payload
+3) signature
+
+
+
+

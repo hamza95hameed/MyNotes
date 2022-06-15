@@ -124,6 +124,7 @@ user -> phone
 ---
 [2] one to hasmany
 
+.
 post ->  comments
 (hasMany)  (belongsto)
 ---
@@ -132,4 +133,8 @@ post ->  comments
 products -> colors
 
 (belongstomany)   (belongstomany) 
+
+------------------------------------
+
+
 

@@ -222,7 +222,7 @@ The pluck helper method is used to retrieve a list of specific values from a giv
 
 --
 e.g 
-So, If we want to define a relationship between these two entities we’ll need three database tables: books, authors and a special table called as a “pivot table” book_author. 
+So, If we want to define a relationship between these two entities weï¿½ll need three database tables: books, authors and a special table called as a ï¿½pivot tableï¿½ book_author. 
 The book_author table is derived from the alphabetical order of the related model names, and contains the book_id and author_id columns.
 --
 
@@ -234,7 +234,7 @@ $book->authors()->attach($authorId, ['best_seller' => true]);
 
 5) detach()
 
-it will remove the rentry from pivot
+it will remove the entry from pivot
 
 I.E
 $book->authors()->detach($authorId);
