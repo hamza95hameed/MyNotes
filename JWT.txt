@@ -4,11 +4,15 @@ composer require tymon/jwt-auth
 ## choose tymen/jwt after this command , It will make file in config (jwt.php)
 php artisan vendor:publish
 
+ $ php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
 ## generate secreat key
 php artisan jwt:secret
 
 ## add this in USER model
 use Tymon\JWTAuth\Contracts\JWTSubject;
+(implement JWTSubject)
+class User extends Authenticatable implements JWTSubject
 
 ## add these functions
 
@@ -50,6 +54,8 @@ public function __construct(){
 ## Now make a login controller and try to login  , and in return you will get a token
 save it and send it in header with every request
 In header you will send it using bearer token.
+
+## use middleware used in code base helpful to manage all exceptions
 
 
 ## JWT THEORY ##
