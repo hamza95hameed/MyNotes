@@ -1,0 +1,38 @@
+Service Providers : 
+---------------------
+Service provider is the place where a laravel application is bootstraped.
+In service provider we register components which are required to run a laravel application .
+The core components includes Routes, Middleware , Events, Cookie , etc.
+
+If you open the config/app.php file included with Laravel, you will see a providers array.
+These are all of the service provider classes that will be loaded for your application.
+By default, a set of Laravel core service providers are listed in this array.
+These providers bootstrap the core Laravel components, such as the mailer, queue, cache, and others. 
+Many of these providers are "deferred" providers, meaning they will not be loaded on every request,
+but only when the services they provide are actually needed.
+
+Service Container
+-----------------
+
+Make object of service provider and use in application where you want.
+It Manage class dependency. Every service  is dependent on class or api key.
+Class Dependency : When a class accept a object of another class using its construct method.
+
+Service container tell how to make a object of a class.
+Service container make and manage the objects of services.
+
+Benefits : 1 class having 1 obj , structerd code , memory management. 
+
+:: Scope Resolution operater
+
+Facades 
+-------
+Provide static interface to class
+Using Facades we don't need to make object to use a function in a class.
+We can call a non static function using this.
+Other wise we need to add a make a object call static funtion of a class.
+---STEPS TO MAKE FACADE ---
+Make a normal custom class
+make a function in it
+make facade and register it in config.app alias
+Use it !
