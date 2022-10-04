@@ -31,3 +31,46 @@ Folder name can be
 Events or Events
 Listener or Listeners
 just verify before doing any functionality
+
+
+----------------------------
+Observers
+----------------------------
+ Laravel Observers will listener event for model eloquent method like create, update and delete.
+
+Retrieved: after a record has been retrieved.
+Creating: before a record has been created.
+Created: after a record has been created.
+Updating: before a record is updated.
+Updated: after a record has been updated.
+Saving: before a record is saved (either created orupdated).
+Saved: after a record has been saved (either created orupdated).
+Deleting: before a record is deleted or soft-deleted.
+Deleted: after a record has been deleted or soft-deleted.
+Restoring: before a soft-deleted record is going to berestored.
+Restored: after a soft-deleted record has been restored.
+
+
+How to implement:
+
+1) make regula controller / model
+2) make observer
+php artisan make:observer ProductObserver --model=Product
+
+3)  go to eventserviceprovider
+
+use App\Blog;
+use App\Observers\BlogObserver;
+
+    public function boot()
+    {
+     
+        parent::boot();
+        // Blog Observer
+        Blog::Observe(BlogObserver::class);
+    }
+
+
+4) Now what ever happern using eloquent it will reflect using observer logic
+
+
