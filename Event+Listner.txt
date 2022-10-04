@@ -1,0 +1,33 @@
+Event
+
+Go to App/Providers/EventServiceProvider.php
+and register your Event w.r.t Listner
+In protected $listen array.
+
+ 'App\Event\ProductCreated'=>[
+            'App\Listener\MakeLog'
+        ]
+
+
+Go to event and define variable in constructer
+
+Go to Listner perform functionality in handler
+
+--
+Go to controller and call event
+
+Commands:
+php artisan make:event PodcastProcessed
+php artisan make:listener SendPodcastNotification --event=PodcastProcessed
+php artisan generate:event // generate missing events
+
+
+NOTE
+if you will add class of event and listner
+then use like this
+
+Folder name can be
+
+Events or Events
+Listener or Listeners
+just verify before doing any functionality

@@ -1,0 +1,150 @@
+Laravel Observers will listener event for model eloquent method like create, update and delete.
+
+On following events observers can be called
+
+Retrieved: after a record has been retrieved.
+Creating: before a record has been created.
+Created: after a record has been created.
+Updating: before a record is updated.
+Updated: after a record has been updated.
+Saving: before a record is saved (either created orupdated).
+Saved: after a record has been saved (either created orupdated).
+Deleting: before a record is deleted or soft-deleted.
+Deleted: after a record has been deleted or soft-deleted.
+Restoring: before a soft-deleted record is going to berestored.
+Restored: after a soft-deleted record has been restored
+
+---
+STEPS:
+---
+
+1) Make model , migration , controller
+
+2) Make observer using 
+
+php artisan make:observer BlogObserver --model=Blog
+
+3) Go to App / providers / eventServiceProviders
+
+and do this in boot method after defining created model + observer
+
+<?php
+
+namespace App\Providers;
+
+use App\Blog;
+use App\Observers\BlogObserver;
+
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
+
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * The event listener mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        Registered::class => [
+            SendEmailVerificationNotification::class,
+        ],
+        'App\Event\ProductCreated'=>[
+            'App\Listener\MakeLog',
+            'App\Listeners\AddVat',
+
+        ]
+    ];
+
+    /**
+     * Register any events for your application.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+     
+        parent::boot();
+        // Blog Observer
+        Blog::Observe(BlogObserver::class);
+    }
+}
+
+
+
+
+4) Now go to observer and add your functionailty where needed.
+
+
+<?php
+
+namespace App\Observers;
+
+use App\Blog;
+
+class BlogObserver
+{
+    /**
+     * Handle the blog "created" event.
+     *
+     * @param  \App\Blog  $blog
+     * @return void
+     */
+    public function creating(Blog $blog)
+    {
+        
+        $url = str_replace( ' ', '-', $blog->title);
+        $blog->url = 'my-new-blog-'.$url;
+  
+    }
+
+    /**
+     * Handle the blog "updated" event.
+     *
+     * @param  \App\Blog  $blog
+     * @return void
+     */
+    public function updating(Blog $blog)
+    {
+        // $blog = Blog::where('id', 2)->first();
+        // $blog->delete();
+                
+        $url = str_replace( ' ', '-', $blog->title);
+        $blog->url = 'updated-blog-'.$url;
+    }
+
+    /**
+     * Handle the blog "deleted" event.
+     *
+     * @param  \App\Blog  $blog
+     * @return void
+     */
+    public function deleted(Blog $blog)
+    {
+        //
+    }
+
+    /**
+     * Handle the blog "restored" event.
+     *
+     * @param  \App\Blog  $blog
+     * @return void
+     */
+    public function restored(Blog $blog)
+    {
+        //
+    }
+
+    /**
+     * Handle the blog "force deleted" event.
+     *
+     * @param  \App\Blog  $blog
+     * @return void
+     */
+    public function forceDeleted(Blog $blog)
+    {
+        //
+    }
+}

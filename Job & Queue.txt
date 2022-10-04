@@ -1,0 +1,53 @@
+General Info:
+
+Laravel gives us a built-in queue system that helps us to run tasks in the background and configure how the system should react in different situations. It allows you to delay a time-consuming task until a later time. By postponing the time-consuming task, you can improve the performance of the Laravel applications
+
+# Queue: Queue is a FIFO (first in first out). Queue task waiting to complete the previous task.
+Laravel Queue: Laravel queue system increase performance of request and reduce the loading time.
+Basically queue is a time-consuming task but run background on the server.
+
+# Job
+Job is a specific task for a specific queue.
+######################################################################################################################################
+
+How to implement ?
+
+# set queue connection on .env file
+
+QUEUE_CONNECTION=database
+php artisan config:cache or php artisan config:clear
+
+# queue table generate
+
+php artisan queue:table
+# if don't have job fails table 
+php artisan queue:failed-table
+php artisan migrate
+
+
+# create a job
+php artisan make:job MailSend
+
+basically handle method calls when the queue is processed. and payload store handle methods and others properties.
+
+
+# call job inside controller or others
+
+dispatch()
+
+use App\Jobs\MailSend;
+dispatch(new MailSend($data))->delay(now()->addMinutes(1));
+
+
+# Run queue command on your server
+
+php artisan queue:work 
+or 
+php artisan queue:listen
+
+# Revert the failed Jobs
+php artisan queue:retry all
+
+
+
+

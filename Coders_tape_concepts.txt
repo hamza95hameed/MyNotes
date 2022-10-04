@@ -1,0 +1,21 @@
+Service Container:
+
+Service Container is used in laravel to make a object at start of application .
+For example we have a class PaymentGateway
+We call it in our controller to make a payment.
+We bind in in our App\Providers\AppServiceProviders.php
+So it make a object when application is bootstrap.
+-----------------------------------------------------------------------------------
+View Composer :
+
+In view composer we define some variables that can be used through out our view's
+
+Do to so we 
+
+Include namespace
+use Illuminate\Support\Facades\View;
+
+In boot method add this 
+View::share('view_composer', 'Yolo Polo');
+
+----------------------------------------------------------------------------------

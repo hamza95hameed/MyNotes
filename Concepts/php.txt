@@ -1,0 +1,9 @@
+Namespace: 
+
+Namespace differentiate b/w two classes by declaring their section.
+Example we have two people john we differentiate the by using their surname.
+
+We can make object in this way :
+
+$table = new Html\Table()
+$row = new Html\Row();

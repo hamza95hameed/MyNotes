@@ -1,0 +1,34 @@
+Why The Repository Pattern?
+
+Why not simply use the Laravel provided Eloquent to perform database persistence functionalities? 
+Why write three times the boilerplate?
+
+In simple Laravel applications, with 20 database tables or less, static requirements, which do require much agility, 
+basic Eloquent is sufficient, no need to use this pattern.
+But when you have an application with constantly changing requirements, a large database, and complex business logic, that simple Eloquent is completely inadequate.
+To mitigate this, use the Repository pattern. But even not so enough, you can add the service layer on top of it.
+
+
+So what are the advantages of a repository pattern?
+
+Easily navigate when changes are made to the project.
+Have a elastic architecture.
+Making it easier for us to do Unit-Test.
+
+What’s a Service Layer?
+A “Service Layer” exists between the UI and the backend systems that store data and
+ is in charge of managing the business rules of transforming and translating data between those two layers.
+
+
+-----
+How to use Higher Order Messages in Laravel?
+
+To use higher order messages in Laravel you can chain any of the above methods like the code below.
+Do note that the main purpose of higher-order messages is to call each of the methods within the collection and perform the actions specified
+
+-- 
+Using interfaces in Repository pattern.
+
+Make interfaces class 
+
+Bind it with repo class via service provider and register it in app.php 

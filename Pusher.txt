@@ -1,0 +1,17 @@
+Resources :
+
+https://www.youtube.com/watch?v=l44IF9fBNOs&ab_channel=NeilRowe
+
+https://github.com/TayyabAslam123/Laravel-Api-and-pusher
+
+====================================================================
+
+Go to pusher use frontend and backend language
+
+copy paste front end code use channel and events
+
+use the required keys
+
+use composer to install pusher library
+
+use pusher to make a event and listen to a event
