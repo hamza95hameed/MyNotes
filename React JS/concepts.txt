@@ -1,0 +1,156 @@
+Intro : 
+
+React is used to make single page application (SPA).
+React used virtual dom to make applications.
+React allows us to create reusable UI components.
+React only changes what needs to be changed!
+React finds out what changes have been made, and changes only what needs to be changed.
+
+Why to use react ?
+
+1) Structure the view layer of application
+2) Reusable components
+3) Dynamic markup JSX
+4) Interactive UI's with Virtual DOM
+5) Performance and testing
+6) Popular in industry
+
+
+
+##################################################################################################################################
+
+JSX:
+
+It is called JSX, and it is a syntax extension to JavaScript.
+const element = <h1>Hello, world!</h1>;
+
+Why JSX?
+React embraces the fact that rendering logic is inherently coupled with other UI logic: 
+how events are handled, how the state changes over time, and how the data is prepared for display.
+
+Specifying Attributes with JSX =>
+
+You may use quotes to specify string literals as attributes:
+const element = <a href="https://www.reactjs.org"> link </a>;
+
+You may also use curly braces to embed a JavaScript expression in an attribute:
+const element = <img src={user.avatarUrl}></img>;
+
+
+Updating the Rendered Element :
+React elements are immutable. Once you create an element, you can’t change its children or attributes. 
+An element is like a single frame in a movie: it represents the UI at a certain point in time.
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to root.render().
+
+
+##################################################################################################################################
+
+Components :
+
+Conceptually, components are like JavaScript functions. 
+They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+
+
+Components render / return JSX.
+They returns html usally.
+They can also take in "Props".
+
+Components can be written in two ways
+1) function “function components”
+2) class
+
+Pure Functions : - Whether you declare a component as a function or a class, it must never modify its own props. Consider this sum function:
+
+function sum(a, b) {
+  return a + b;
+}
+
+
+##################################################################################################################################
+Props :
+
+Props can be sent to a component like
+
+<Header myCity = "Lahore" />
+function Header(props) {
+    return (
+      <header>
+        <h1>___ TASK TRACKER ___</h1>
+        <p>I am living in  <b>{props.myCity}</b></p>
+      </header>
+    );
+}
+  
+OR
+
+<Header myCity = "Lahore" />
+function Header({myCity}) {
+    return (
+      <header>
+        <h1>___ TASK TRACKER ___</h1>
+        <p>I am living in  <b>{myCity}</b></p>
+      </header>
+    );
+}
+
+
+## Prop type can be set 
+
+import PropTypes from 'prop-types'
+
+
+Header.prototype = {
+  myCity : PropTypes.bool.isRequired,
+}  
+
+
+However, in later versions of React, this utility has been moved to a separate package called prop-types. 
+To get access to the PropTypes utility, you need to add prop-types as a dependency for your project:
+npm install prop-types --save
+
+################################################################################################################################################
+State : 
+
+Components can have state which is a object that represent how a component 
+will render.
+The state object is where you store property values that belongs to the component.
+When the state object changes, the component re-renders.
+
+"App" or "Global" states refers to state that is available to entire UI not just to
+single component.
+
+In version 16.8 + we can use functional components with hooks.
+
+States pass down , Action pass upwards
+
+################################################################################################################################################
+
+Hooks :
+
+React hooks are functions that let us hook in to react state.
+
+useState- Returns a stateful value and a function to update it.
+useEffect- perform side effects in function component
+useContext , useReducer , useRef- Cont...........
+
+################################################################################################################################################
+
+
+**************************
+Installation of react app 
+**************************
+npx create-react-app todo-tracker
+
+If issue faced while making new app do this :
+
+# 1) Delete proxies
+npm config rm proxy
+npm config rm https-proxy
+
+# 2) Change Timeouts
+npm config set fetch-retry-mintimeout 20000
+npm config set fetch-retry-maxtimeout 120000
+
+
+
+
