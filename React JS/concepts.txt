@@ -113,6 +113,7 @@ State :
 
 Components can have state which is a object that represent how a component 
 will render.
+
 The state object is where you store property values that belongs to the component.
 When the state object changes, the component re-renders.
 
