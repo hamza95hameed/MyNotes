@@ -1,0 +1,46 @@
+~~~ PREBUILD UI 
+Install for prebuild ui of Login / Register
+
+composer require laravel/ui "^1.0" --dev
+npm install
+
+( Compile the asset's )
+npm run dev
+
+
+~~~ SQLITE
+
+in .env replace  DB connection to sqlite
+add sqlite file in database/database.sqlite
+
+
+~~~ PUSHER APP
+
+(INSTALL PUSHER LIBRARY)
+$ composer require pusher/pusher-php-server
+
+Create Pusher app
+and copy - paste keys on .env file 
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+Also add broadcast driver
+
+BROADCAST_DRIVER=pusher
+
+Then on config.php\App.php
+
+uncomment this line so we can use broadcasting channels.
+
+ // App\Providers\BroadcastServiceProvider::class,
+
+(INSTALL LARAVEL ECHO)
+$ npm install --save-dev laravel-echo pusher-js
+( TO COMPILE ASSETS ) 
+
+$ npm run dev 
+
+uncomment code in resource\js\bootstrap.js for laravel echo
